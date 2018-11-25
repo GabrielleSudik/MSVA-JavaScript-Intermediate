@@ -1,4 +1,7 @@
 // part one
+
+//basics and overview
+
 //in js, you don't declare the variable type
 
 var x = 3;
