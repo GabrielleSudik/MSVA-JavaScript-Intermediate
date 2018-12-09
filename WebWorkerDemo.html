@@ -41,8 +41,11 @@ built-in library, because stuff just auto-fills for you-->
         $('#send-message').click(function(){
             //say what message to send:
             var message = $('#message').val();
+            //create an object for the message:
+            //the first message is the type, the second is the data
+            var messageObject = {message: message};
             //send the message:
-            worker.postMessage(message);
+            worker.postMessage(messageObject);
         });
     });
 
