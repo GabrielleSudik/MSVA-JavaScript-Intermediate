@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title></title>
+        <title>Web Worker Demo</title>
         <meta charset="utf-8" />
         <link href="Style.css" rel="stylesheet" />
 </head>
@@ -11,19 +11,22 @@ built-in library, because stuff just auto-fills for you-->
 
 <body>
     <div>
-        <label for="message">Message</label>
+        <label for="message">Message: </label>
         <input type="text" id="message" class="form-control" />
         <button type="button" id="send-message" class="btn">Send message</button>
     </div>
-    <ul id="message-list"></ul>
+    <div>
+        <ul id="message-list"></ul>
+    </div>
 
     <!-- the following script is from the asp.net content delivery network.
     the user will fetch that script from the webserver.
-    NOTE this mightprobably will work only if you F5 from within and IDE
+    NOTE this mightprobably will work only if you F5 from within an IDE
     anyone who just double-clicks the html file won't get it-->
     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
 
     <script>
+        $(function(){
         //create the worker, point to its script:
         var worker = new Worker('./WebWorkerDemo.js');
 
@@ -31,7 +34,7 @@ built-in library, because stuff just auto-fills for you-->
         worker.onmessage = function(e){
             //the message is on the data property:
             var message = e.data;
-            $('message-list').append('<li>' + message + '</li>');
+            $('#message-list').append('<li>' + message + '</li>');
         }
         
         //send messages to the worker:
@@ -41,6 +44,7 @@ built-in library, because stuff just auto-fills for you-->
             //send the message:
             worker.postMessage(message);
         });
+    });
 
     </script>    
 
