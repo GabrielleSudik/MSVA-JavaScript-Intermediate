@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Deferred Worker Demo</title>
+        <meta charset="utf-8" />
+        <link href="Style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <label for="message">Message: </label>
+        <input type="text" id="message" class="form-control" />
+        <button type="button" id="send-message" class="btn">Send message</button>
+    </div>
+    <div>
+        <ul id="result-list"></ul>
+    </div>
+
+    <!-- load jQuery and the client script we created-->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="./Deferred-Client.js"></script>
+
+    <!-- deferred worker demo-->
+    <script>
+     
+     //wait for page to load:
+     $(function (){
+
+        $('#send-message').click(function(){
+            var message = $('#message').val();
+
+            //get promise from the method we created in Deferred-Client.js:
+            var promise = processMessage(message);
+
+            //when operation completes, update list:
+            promise.done(function (data) {
+                $('#result-list').append('<li>' + data + '</li>');
+            })
+        });
+    });
+
+    </script>    
+
+</body>
+</html>
+
+<!-- an addvantage to using deferred workers is: You create one function in the body to call the method.
+And THAT method calls the deferred web worker. All that happens here is, the page gets a result about
+the status of the method: done, failed, or in progress. So if the method itself changes,
+this page doesn't have to, because all it gets is the status message.-->
+
+<!-- you couldn't run your own demo, but if you could, you'd see that the worker waits
+5 seconds after being asked to do something, then reports that the message was processed
+to this page, appended to the unordered result-list. You can keep sending messages even
+while the worker is working. Cool.-->

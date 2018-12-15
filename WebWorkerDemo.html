@@ -23,7 +23,7 @@ built-in library, because stuff just auto-fills for you-->
     the user will fetch that script from the webserver.
     NOTE this mightprobably will work only if you F5 from within an IDE
     anyone who just double-clicks the html file won't get it-->
-    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
     <script>
         $(function(){
@@ -47,6 +47,8 @@ built-in library, because stuff just auto-fills for you-->
             //send the message:
             worker.postMessage(messageObject);
         });
+
+        worker.postMessage({staus: "START"});
     });
 
     </script>    
