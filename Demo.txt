@@ -1,0 +1,18 @@
+Hello, World.
+(This is the demo text in Demo.txt)
+
+And your notes for this module
+
+AJAX = Asynchronous JavaScript And XML
+ -- set of commonly used standards for making server calls
+ -- but these days it's more JSON than XML
+ -- XMLHTTPRequest is still behind the scenes
+ -- but AJAX is way easier to write
+
+$.get -- retrieves text
+$.getJSON -- retrieves a JSON object
+
+-- ---
+
+What if we want the server to call the client?
+WEB SOCKETS

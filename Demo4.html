@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Deferred Worker Demo</title>
+        <meta charset="utf-8" />
+        <link href="Style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <button type="button" id="load-data" class="btn">
+            Load data</button>
+    </div>
+    <div id="output"></div>
+
+    <!-- load jQuery-->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    
+    <!-- you wrote this script first to see under the hood a bit
+    now comment it out and write the same thing below with jQuery.-->
+    <!-- <script>
+        //this function is like what you first wrote in MSVA...4.js
+        //we'll put it to work here.
+        $('#load-data').click(function(){
+            var xhr = new XMLHttpRequest();
+
+            //when we get data:
+            xhr.onreadystatechange = function(){
+                //make sure we have data:
+                if (xhr.readyState == 4 && xhr.status == 200){
+                    var data = xhr.responseText;
+                    $('#output').text(data);
+                }
+            }
+
+            //open the connection:
+            xhr.open('GET', './Demo.txt');
+
+            //send 
+            xhr.send();
+
+            //hmm. like the last lesson, my server is not responding.
+            //think it's because you need to set a new port to access the localhost.
+        })
+    </script> -->
+
+    <!-- here is the same thing, but written with jQuery instead-->
+    <script>
+        $('#load-data').click(function(){
+            $.get('./Demo.txt').done(function(data){
+                //the data from the server is inside variable "data"
+                $('#output').text(data);
+            })
+        });
+
+        //that gives us the same result as before. it still "gets" the text we request.
+        //but it's 3 lines of code instead of 8.
+        
+    </script>
+
+</body>
+</html>
